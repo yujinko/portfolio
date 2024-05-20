@@ -34,9 +34,9 @@ const Navbar = () => {
 
                     {/* --right-menu-icon-- */}
                     <MenuIcon>
-                        <span><a href="#">About</a></span>
-                        <span><a href="#">My Skills</a></span>
-                        <span><a href="#">My Projects</a></span>
+                        <span><a href="/">Main Page</a></span>
+                        <span><a href="./Routes/Write">Write</a></span>
+                        <span><a href="./Routes/List">List</a></span>
                     </MenuIcon>
                 </FlexContainer>
             </Container>

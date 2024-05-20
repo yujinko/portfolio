@@ -2,27 +2,31 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './utils/Theme';
 import { MainBody, Container } from './styles/Global.styled';
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 //import components
-import Showcase from './components/Showcase';
-import MySkills from './components/MySkills';
-import MyProjects from './components/MyProjects';
+import MainPage from './components/main';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Write from './Routes/Write';
+import List from './Routes/List';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <MainBody>
-        <Navbar/>
-        <Container>
-          <Showcase/>
-          <MySkills/>
-          <MyProjects/>
-        </Container>
-        <Footer/>
-      </MainBody>
+      <BrowserRouter>
+        <MainBody>
+          <Navbar />
+          <Container>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/write" element={<Write />} />
+              <Route path="/list" element={<List />} />
+            </Routes>
+          </Container>
+          <Footer />
+        </MainBody>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
