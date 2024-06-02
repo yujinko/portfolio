@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Write from './Routes/Write';
 import List from './Routes/List';
 import Page from './Routes/Page';
+import Login from './Routes/Login';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/write" element={<Write />} />
               <Route path="/list" element={<List />} />
               <Route path="/pages/:id" element={<Page/>}/>
+              <Route path="/login" element={<Login/>}/>
             </Routes>
           </Container>
           <Footer />
