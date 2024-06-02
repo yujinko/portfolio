@@ -38,6 +38,7 @@ const Navbar = () => {
                         <span><Link to="/write">Write</Link></span> 
                         <span><Link to="/list">List</Link></span> 
                         <span><Link to="/login">Login</Link></span> 
+                        <span><Link to="/signup">SignUp</Link></span>
                     </MenuIcon>
                 </FlexContainer>
             </Container>

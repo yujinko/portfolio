@@ -12,6 +12,7 @@ import Write from './Routes/Write';
 import List from './Routes/List';
 import Page from './Routes/Page';
 import Login from './Routes/Login';
+import SignUp from './Routes/SignUp';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="/list" element={<List />} />
               <Route path="/pages/:id" element={<Page/>}/>
               <Route path="/login" element={<Login/>}/>
+              <Route path="/signup" element={<SignUp/>}/>
             </Routes>
           </Container>
           <Footer />
