@@ -12,18 +12,20 @@ import {
 
 function Write() {
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [body, setBody] = useState('');
 
   const writePost = async () => {
-    const data = {
-      title: title,
-      body: content, 
-    };
     try {
-      const response = await api.post('', data);
-      console.log('응답 완료', response);
-    } catch (error) {
-      console.error('에러: ', error);
+      const response = await api.post('https://hufs-mutsa-12th.store/blog/', {
+        title: title,
+        body: body, 
+        });
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        alert('게제 성공');
+      } catch (error) {
+        console.error(error);
+        alert('게제 실패');
     }
   };
   
@@ -32,9 +34,9 @@ function Write() {
     setTitle(e.target.value);
   };
 
-  function ContentChange(e) {
+  function BodyChange(e) {
     console.log(e);
-    setContent(e.target.value);
+    setBody(e.target.value);
   };
 
   return (
@@ -53,8 +55,8 @@ function Write() {
         <InputTitleContainer>게시글 내용</InputTitleContainer>
         <InputWrapContainer>
           <InputContainer placeholder = "내용을 입력해주세요."
-          value={content}
-          onChange={ContentChange}/>
+          value={body}
+          onChange={BodyChange}/>
         </InputWrapContainer>
       </ContentContainer>
 
