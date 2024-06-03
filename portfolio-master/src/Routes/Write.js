@@ -13,7 +13,6 @@ import {
 function Write() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [posts, setPosts] = useState([]);
 
   const writePost = async () => {
     const data = {
@@ -21,11 +20,8 @@ function Write() {
       body: content, 
     };
     try {
-      const response = await api.post('/', data);
+      const response = await api.post('', data);
       console.log('응답 완료', response);
-      setPosts([...posts, response.data]);
-      setTitle('');
-      setContent('');
     } catch (error) {
       console.error('에러: ', error);
     }

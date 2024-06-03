@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
+import api from '../components/api';
 
 import { 
   WritePageContainer, 
@@ -18,8 +19,9 @@ function Login() {
   
   const getLogin = async () => {
     try {
-      const response = await axios.get('/dj/login');
+      const response = await api.post('/dj/login/');
       console.log('응답 완료');
+      localStorage.setItem("access", response.data.access);    
       setId(response.data);
   } catch (error) {
       // 실패한 경우 처리
@@ -31,22 +33,15 @@ function Login() {
     getLogin();
   }, []);
 
-  // const cookies = new Cookies();
-
-  // const setCookie = (name, value, options) => {
-  //   return cookies.set(name, value, {path: '/', ...options});
-  // };
-  // const getCookie = (name) => {
-  //   return cookies.get(name);
-  // };
-
   const login = async () => {
     try {
-      const response = await axios.post('/dj/login/', {
-        usename: id,
+      const response = await axios.post('https://hufs-mutsa-12th.store/dj/login/', {
+        username: id,
         password: pw,
       });
       console.log(response.data);
+      localStorage.setItem("token", response.data.token);
+      alert('로그인 성공');
     } catch (error) {
       console.log(error.response.data);
       console.log(error.response.status);

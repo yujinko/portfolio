@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import api from '../components/api';
 
 import { 
   WritePageContainer, 
@@ -10,6 +11,7 @@ import {
   InputWrapContainer, 
   InputContainer, 
   ButtonContainer } from './Write.styled';
+
 
 function SignUp() {
   const [id, setId] = useState('');
@@ -22,16 +24,14 @@ function SignUp() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('/dj/registration/', {
-        id,
-        pw,
-        pw2,
-        nickname,
-        uni,
-        loc,
-      });
-      
-      setCookie('Token', response.data.token, {path:'/'});
+      const response = await api.post('https://hufs-mutsa-12th.store/dj/registration/', {
+        username: id,
+        password1: pw,
+        password2: pw2,
+        nickname: nickname,
+        university: uni,
+        location: loc,
+      });  
       alert('회원가입 성공');
     } catch (error) {
       console.error(error);
