@@ -7,6 +7,8 @@ import {
 import Write from './Routes/Write';
 import List from './Routes/List';
 import MainPage from './components/main';
+import Login from "./Routes/Login";
+import { CookiesProvider } from "react-cookie";
 
 
 /* existing imports */
@@ -27,12 +29,19 @@ const router = createBrowserRouter([
     {
       path: "/write",
       element: <Write/>,
-    } ]
+    },
+    {
+      path: "logins",
+      element: <Login/>,
+    }
+  ]
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CookiesProvider>
+      <RouterProvider router={router} />
+    </CookiesProvider>
   </React.StrictMode>
 );

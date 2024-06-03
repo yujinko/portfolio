@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 import { 
   WritePageContainer, 
@@ -16,6 +18,26 @@ function SignUp() {
   const [nickname, setNickname] = useState('');
   const [uni, setUni] = useState('');
   const [loc, setLoc] = useState('');
+  const [cookies, setCookie] = useCookies(['user']);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('/dj/registration/', {
+        id,
+        pw,
+        pw2,
+        nickname,
+        uni,
+        loc,
+      });
+      
+      setCookie('Token', response.data.token, {path:'/'});
+      alert('회원가입 성공');
+    } catch (error) {
+      console.error(error);
+      alert('회원가입 실패');
+    }
+  };
 
   function IdChange(e) {
     console.log(e);
@@ -99,7 +121,7 @@ function SignUp() {
       
 
       <div>
-        <ButtonContainer>
+        <ButtonContainer onClick={handleSubmit}>
           회원가입하기
         </ButtonContainer>
       </div>

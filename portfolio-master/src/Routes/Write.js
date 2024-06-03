@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import api from '../components/api';
 
 import { 
   WritePageContainer, 
@@ -12,7 +13,24 @@ import {
 function Write() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [posts, setPosts] = useState([]);
 
+  const writePost = async () => {
+    const data = {
+      title: title,
+      body: content, 
+    };
+    try {
+      const response = await api.post('/', data);
+      console.log('응답 완료', response);
+      setPosts([...posts, response.data]);
+      setTitle('');
+      setContent('');
+    } catch (error) {
+      console.error('에러: ', error);
+    }
+  };
+  
   function TitleChange(e) {
     console.log(e);
     setTitle(e.target.value);
@@ -45,7 +63,7 @@ function Write() {
       </ContentContainer>
 
       <div>
-        <ButtonContainer>
+        <ButtonContainer onClick = {writePost}>
           게제하기
         </ButtonContainer>
       </div>
