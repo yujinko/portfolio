@@ -13,6 +13,7 @@ import List from './Routes/List';
 import Page from './Routes/Page';
 import Login from './Routes/Login';
 import SignUp from './Routes/SignUp';
+import PostDetail from './Routes/PostDetail';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/pages/:id" element={<Page/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/signup" element={<SignUp/>}/>
+              <Route path="/post/:postid" element={<PostDetail/>}/>
             </Routes>
           </Container>
           <Footer />

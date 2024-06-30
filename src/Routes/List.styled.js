@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const ContentContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: 17px;
+    margin-top: 14px;
+    flex: 1;
+    overflow-y: auto;
 `;
 
 export const ListItemContainer = styled.div`

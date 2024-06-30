@@ -23,6 +23,7 @@ export const TitleContainer = styled.div`
 export const ContentContainer = styled.div`
     margin-top: 14px;
     flex: 1;
+    overflow-y: auto;
 `
 export const InputTitleContainer = styled.div`
     font-weight: 400;

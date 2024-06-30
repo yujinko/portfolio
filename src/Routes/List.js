@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import api from '../components/api';
 
 import { 
   WritePageContainer, 
   TitleContainer, 
   InputTitleContainer, 
+  ButtonContainer 
 } from './Write.styled';
 
 import { 
@@ -17,7 +20,8 @@ import {
 
 function List() {
   const [post, setPosts] = useState([]);
-
+  const { postid } = useParams();
+  const navigate = useNavigate();
 
   const handlePost = async () => {
     try {
@@ -29,6 +33,7 @@ function List() {
       console.log(error.response.data);
     }
   };
+
   useEffect(() => {
     handlePost();
   }, []);
@@ -41,10 +46,11 @@ function List() {
       <ContentContainer>
         {post.map((post) => (
           <ListItemContainer key={post.id}>
-            <StyledLink to={`/pages/${post.id}`}>
               <InputTitleContainer>{post.title}</InputTitleContainer>
               <ListItemContent>{post.body}</ListItemContent>
-            </StyledLink>
+              <ButtonContainer>
+              <Link to={`/post/${post.id}`}><button><span>상세보기</span></button></Link>
+              </ButtonContainer>
           </ListItemContainer>
         ))}
       </ContentContainer>
