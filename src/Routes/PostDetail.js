@@ -34,6 +34,10 @@ function PostDetail() {
     navigate(`/edit/${postid}`);
   };
 
+  const postDelete = () => {
+    navigate(`/delete/${postid}`);
+  };
+
   return (
     <WritePageContainer>
       <ContentContainer>
@@ -46,7 +50,10 @@ function PostDetail() {
           </ListItemContainer>
         </div>
       </ContentContainer>
-      <ButtonContainer onClick = {postEdit}>수정하기</ButtonContainer>
+      <div>
+        <ButtonContainer onClick = {postEdit}>수정하기</ButtonContainer>
+        <ButtonContainer onClick= {postDelete}>삭제하기</ButtonContainer>
+      </div>
     </WritePageContainer>
 
     

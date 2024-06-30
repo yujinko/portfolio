@@ -58,4 +58,6 @@ export const ButtonContainer = styled.button`
     background-color: white;
     border: 1px solid #c2c0c0;
     border-radius: 20px;
+    padding: 5px 5px; 
+    margin: 5px; 
 `

@@ -15,6 +15,7 @@ import Login from './Routes/Login';
 import SignUp from './Routes/SignUp';
 import PostDetail from './Routes/PostDetail';
 import PostEdit from './Routes/PostEdit';
+import PostDelete from './Routes/PostDelete';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/signup" element={<SignUp/>}/>
               <Route path="/post/:postid" element={<PostDetail/>}/>
               <Route path="/edit/:postid" element={<PostEdit/>}/>
+              <Route path="/delete/:postid" element={<PostDelete/>}/>
             </Routes>
           </Container>
           <Footer />
