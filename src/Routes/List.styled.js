@@ -32,3 +32,32 @@ export const ListItemContent = styled.div`
     color: gray;
     margin: 10px;
 `;
+
+export const PostTitle = styled.div`
+    margin: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+`;
+
+export const UpdateTitle = styled.input`
+    margin: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    border: none;
+    width: 95%;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+`;
+
+export const UpdateContent = styled.input`
+    font-size: 14px;
+    font-weight: 400;
+    color: gray;
+    margin: 10px;
+    width: 95%;
+`;

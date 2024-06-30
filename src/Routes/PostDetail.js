@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import api from '../components/api';
 import axios from 'axios';
+import { ButtonContainer, ContentContainer, InputTitleContainer, TitleContainer, WritePageContainer } from './Write.styled';
+import { ListItemContainer, PostTitle } from './List.styled';
+import styled from 'styled-components';
+import { fetchPostDetail } from './api';
 
 function PostDetail() {
   const { postid } = useParams();
   const [post, setPost] = useState(null);
+  const navigate = useNavigate();
 
-  const fetchPostDetail = async () => {
-    const token = sessionStorage.getItem('access');
-    console.log('Retrieved token:', token);
-
+  const getPostDetail = async () => {
     try {
-      const response = await axios.get(`https://hufs-mutsa-12th.store/blog/${postid}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      console.log('응답완료', response.data);
-      setPost(response.data);
+      const data = await fetchPostDetail(postid);
+      setPost(data);
     } catch (error) {
       console.log(error.response.data);
     }
   };
 
   useEffect(() => {
-    fetchPostDetail();
+    getPostDetail();
   }, [postid]);
 
 
@@ -33,12 +30,28 @@ function PostDetail() {
     return <div>Loading...</div>;
   }
 
+  const postEdit = async () => {
+    navigate(`/edit/${postid}`);
+  };
+
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-    </div>
+    <WritePageContainer>
+      <ContentContainer>
+        <div>
+          <PostTitle>
+            제목: {post.title}
+          </PostTitle>
+          <ListItemContainer>
+            내용: {post.body}
+          </ListItemContainer>
+        </div>
+      </ContentContainer>
+      <ButtonContainer onClick = {postEdit}>수정하기</ButtonContainer>
+    </WritePageContainer>
+
+    
   );
 }
 
 export default PostDetail;
+
